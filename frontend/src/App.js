@@ -1,15 +1,19 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AddRoomForm from './Components/AddRoomForm/AddRoomForm';
-import LoginPage from './Components/LoginPage/LoginPage';
-import SignupPage from './Components/SignupPage/SignupPage';
+import RoomCard from './Components/RoomCard/RoomCard';
+import LoginPage from './Pages/LoginPage/LoginPage';
+import SignupPage from './Pages/SignupPage/SignupPage';
+import RoomsPage from './Pages/RoomsPage/RoomsPage';
+import logo from './assets/google-logo.webp';
 import './App.css';
+import RoomView from './Components/RoomView/RoomView';
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "",
-      element: <AddRoomForm />,
+      element: <RoomView />,
     },
     {
       path: "/login",
@@ -18,6 +22,10 @@ function App() {
     {
       path: "/signup",
       element: <SignupPage />
+    },
+    {
+      path: "/rooms",
+      element: <RoomsPage />
     }
   ])
 

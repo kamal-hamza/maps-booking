@@ -1,5 +1,5 @@
-import NavigationBar from "../NavigationBar/NavigationBar";
-import UserForm from '../UserForm/UserForm';
+import NavigationBar from "../../Components/NavigationBar/NavigationBar";
+import UserForm from '../../Components/UserForm/UserForm';
 
 function SignupPage() {
     return (
