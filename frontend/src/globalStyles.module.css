@@ -1,0 +1,10 @@
+.div_main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.alert {
+    background-color: whitesmoke;
+    color: black;
+}

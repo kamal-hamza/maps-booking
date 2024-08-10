@@ -1,0 +1,20 @@
+.login_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 395px;
+    margin-top: 5px;
+    padding: 5px;
+    width: 100%;
+    background-color: rgb(155, 27, 47);
+    border: none;
+    transition: ease 0.75s;
+}
+
+.login_btn:hover {
+    background-color: black;
+}
+
+img {
+    max-width: 30px;
+}
