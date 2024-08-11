@@ -2,17 +2,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import RoomView from "../../Components/RoomView/RoomView";
+import ApprovalsView from "../../Components/ApprovalView/ApprovalsView";
 import NavigationBar from "../../Components/NavigationBar/NavigationBar";
 import globalStyles from '../../globalStyles.module.css';
 
-function RoomsPage() {
+function ApprovalsPage() {
     return (
         <div className={globalStyles.div_main}>
             <NavigationBar />
-              <RoomView />
+              <ApprovalsView />
         </div>
     );
 }
 
-export default RoomsPage;
+export default ApprovalsPage;
