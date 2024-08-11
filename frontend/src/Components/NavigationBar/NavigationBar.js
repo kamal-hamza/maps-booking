@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/maps-logo.png'
 
 function NavigationBar() {
+
     return (
         <Navbar expand="lg" id={styles.navbar} className="bg-body-tertiary">
             <Container>
@@ -17,6 +18,7 @@ function NavigationBar() {
                     <Nav className="me-auto">
                         <Nav.Link><Link className={styles.navlink} to="/login">Login</Link></Nav.Link>
                         <Nav.Link><Link className={styles.navlink} to="/signup">Sign Up</Link></Nav.Link>
+                        <Nav.Link><Link className={styles.navlink}>Logout</Link></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -35,7 +35,7 @@ function RoomView() {
         <div>
             {
                 rooms.map((room) => (
-                    <RoomCard key={room.id} name={room.name} occupancy={room.occupancy} price={room.price} />
+                    <RoomCard key={room.id} id={room.id} name={room.name} occupancy={room.occupancy} price={room.price} />
                 ))
             }
         </div>

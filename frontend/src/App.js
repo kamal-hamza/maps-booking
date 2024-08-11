@@ -4,6 +4,7 @@ import RoomCard from './Components/RoomCard/RoomCard';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import SignupPage from './Pages/SignupPage/SignupPage';
 import RoomsPage from './Pages/RoomsPage/RoomsPage';
+import BookingCalendar from './Components/Calender/Calender';
 import logo from './assets/google-logo.webp';
 import './App.css';
 import RoomView from './Components/RoomView/RoomView';
@@ -13,7 +14,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "",
-      element: <RoomView />,
+      element: <LoginPage />,
     },
     {
       path: "/login",
@@ -26,6 +27,10 @@ function App() {
     {
       path: "/rooms",
       element: <RoomsPage />
+    },
+    {
+      path: "/calendar/:id",
+      element: <BookingCalendar />
     }
   ])
 
