@@ -1,15 +1,12 @@
 import { useState } from 'react';
+import axios, { AxiosError } from 'axios'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import globalStyles from '../../globalStyles.module.css';
 import styles from './UserForm.module.css';
-import app from '../../firebaseConfig';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import GoogleButton from '../GoogleButton/GoogleButton';
-// import MicrosoftButton from '../MicrosoftButton/MicrosoftButton';
 import { redirect } from 'react-router-dom';
 
 function UserForm({ isSignup }) {
@@ -22,48 +19,37 @@ function UserForm({ isSignup }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const auth = getAuth(app);
-        const email = formData.email;
-        const password = formData.password;
-        const db = getFirestore(app);
         try {
             if (isSignup) {
-                createUserWithEmailAndPassword(auth, email, password)
-                .then(async (userCredentials) => {
-                    const user = userCredentials.user;
-                    await setDoc(doc(db, "users", user.uid), {
-                        email: user.email,
-                        displayName: user.displayName,
-                        isAdmin: false
-                    });
-                    localStorage.setItem('userID', user.uid);
-                    setAlert({ variant: 'success', message: 'Successfully signed up!' });
-                })
-            }
-            else {
-                const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-                const userDocRef = doc(db, "users", user.uid);
-                const userDoc = await getDoc(userDocRef);
-                if (userDoc.exists()) {
-                    const userData = userDoc.data();
-                    const isAdmin = userData.isAdmin;
-                    if (isAdmin) {
-                        
-                    }
-                    else {
-                    }
+                const url = 'http://127.0.0.1:8000/signup/'
+                const response = await axios.post(url, {
+                    email: formData.email,
+                    password: formData.password
+                });
+                if (response.status === 200) {
+                    localStorage.setItem('authToken', response.data.token)
+                    setAlert({ variant: 'success', message: 'Account Created Successfully!' });
                 }
                 else {
-                    redirect("/login");
+                    setAlert({ variant: 'danger', message: 'An error occured during signup' });
                 }
-                const user = userCredentials.user;
-                localStorage.setItem('userID', user.uid);
-                setAlert({ variant: 'success', message: 'Successfully logged in!' });
+            }
+            else {
+                const url = 'http://127.0.0.1:8000/login/'
+                const response = await axios.post(url, {
+                    email: formData.email,
+                    password: formData.password
+                });
+                if (response.status === 200) {
+                    localStorage.setItem('authToken', response.data.token)
+                    setAlert({ variant: 'success', message: 'Successfully logged in!' });
+                }
+                else {
+                    setAlert({ variant: 'danger', message: 'An error occured during signup' });
+                }
             }
         } catch(error) {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            setAlert({ variant: 'danger', message: `${errorCode}: ${errorMessage}` });
+            setAlert({ variant: 'danger', message: `${error}` });
         }
     }
 
