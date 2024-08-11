@@ -5,7 +5,7 @@ function SignupPage() {
     return (
         <div>
             <NavigationBar />
-            <UserForm isSignup={true} />
+            <UserForm isSignup={true} isInternal={false} />
         </div>
     );
 }

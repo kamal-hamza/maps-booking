@@ -12,7 +12,7 @@ import GoogleButton from '../GoogleButton/GoogleButton';
 // import MicrosoftButton from '../MicrosoftButton/MicrosoftButton';
 import { redirect } from 'react-router-dom';
 
-function UserForm({ isSignup }) {
+function UserForm({ isSignup, isInternal }) {
 
     const [formData, setFormData] = useState({
         email: "",
@@ -37,6 +37,12 @@ function UserForm({ isSignup }) {
                         isAdmin: false
                     });
                     localStorage.setItem('userID', user.uid);
+                    if (isInternal) {
+                        localStorage.setItem("isInternal", true);
+                    }
+                    else {
+                        localStorage.setItem("isInternal", false);
+                    }
                     setAlert({ variant: 'success', message: 'Successfully signed up!' });
                 })
             }
