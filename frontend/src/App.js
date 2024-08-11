@@ -4,6 +4,7 @@ import RoomCard from './Components/RoomCard/RoomCard';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import SignupPage from './Pages/SignupPage/SignupPage';
 import RoomsPage from './Pages/RoomsPage/RoomsPage';
+import ApprovalsPage from './Pages/ApprovalsPage/ApprovalsPage';
 import BookingCalendar from './Components/Calender/Calender';
 import InternalLoginPage from './Pages/InternalLoginPage/InternalLoginPage';
 import InternalSignupPage from './Pages/InternalSignupPage/InternalSignupPage';
@@ -41,6 +42,10 @@ function App() {
     {
       path: "/signup/internal",
       element: <InternalSignupPage />
+    },
+    {
+      path: "/approvals/internal",
+      element: <ApprovalsPage/>
     }
   ])
 
