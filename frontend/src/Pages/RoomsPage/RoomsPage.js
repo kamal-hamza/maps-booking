@@ -10,7 +10,7 @@ function RoomsPage() {
     return (
         <div className={globalStyles.div_main}>
             <NavigationBar />
-            <Link to="../../Components/BookingPage/BookingPage">  
+            <Link to="../../Pages/BookingPage/BookingPage">  
               <RoomView />
             </Link>
         </div>
