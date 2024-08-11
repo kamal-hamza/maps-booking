@@ -1,0 +1,107 @@
+
+@import '~react-calendar/dist/Calendar.css';
+
+/* Main container for the calendar */
+.react-calendar {
+  width: 100%;
+  max-width: 350px;
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
+}
+
+/* Calendar header */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1em;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #dcdcdc;
+  border-radius: 8px 8px 0 0;
+}
+
+.react-calendar__navigation button {
+  color: #333;
+  min-width: 44px;
+  background: none;
+  font-size: 1.2em;
+  margin: 0.2em;
+  padding: 0.2em 0.5em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: #e6e6e6;
+}
+
+/* Calendar days and dates */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5em;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.react-calendar__month-view__days__day {
+  font-size: 0.9em;
+  padding: 0.5em;
+  text-align: center;
+  background-color: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #d9534f;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #e6e6e6;
+  border: 1px solid #dcdcdc;
+}
+
+/* Selected date */
+.react-calendar__tile--active {
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  color: white;
+  border-radius: 4px;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background-color: #0056b3;
+}
+
+/* Calendar footer with today button */
+.react-calendar__tile--now {
+  background-color: #f0f8ff;
+  border-radius: 4px;
+}
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background-color: #e6f0ff;
+}
+
+/* Calendar button styling */
+button.react-calendar__tile {
+  max-width: 100%;
+  padding: 10px 6.6667px;
+  background: none;
+  border: 0;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.125em;
+  text-align: center;
+}
