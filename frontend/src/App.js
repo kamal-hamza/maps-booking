@@ -6,6 +6,7 @@ import SignupPage from './Pages/SignupPage/SignupPage';
 import RoomsPage from './Pages/RoomsPage/RoomsPage';
 import BookingCalendar from './Components/Calender/Calender';
 import InternalLoginPage from './Pages/InternalLoginPage/InternalLoginPage';
+import InternalSignupPage from './Pages/InternalSignupPage/InternalSignupPage';
 import logo from './assets/google-logo.webp';
 import './App.css';
 import RoomView from './Components/RoomView/RoomView';
@@ -32,8 +33,8 @@ function App() {
     {
       path: "/calendar/:id",
       element: <BookingCalendar />
-    }
-     {
+    },
+    {     
       path: "/login/internal",
       element: <InternalLoginPage />
     },
