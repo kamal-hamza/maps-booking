@@ -4,6 +4,8 @@ import RoomCard from './Components/RoomCard/RoomCard';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import SignupPage from './Pages/SignupPage/SignupPage';
 import RoomsPage from './Pages/RoomsPage/RoomsPage';
+import InternalLoginPage from './Pages/InternalLoginPage/InternalLoginPage';
+import InternalSignupPage from './Pages/InternalSignupPage/InternalSignupPage';
 import logo from './assets/google-logo.webp';
 import './App.css';
 import RoomView from './Components/RoomView/RoomView';
@@ -26,6 +28,14 @@ function App() {
     {
       path: "/rooms",
       element: <RoomsPage />
+    },
+    {
+      path: "/login/internal",
+      element: <InternalLoginPage />
+    },
+    {
+      path: "/signup/internal",
+      element: <InternalSignupPage />
     }
   ])
 

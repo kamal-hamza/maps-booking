@@ -6,7 +6,7 @@ function LoginPage() {
     return (
         <div className={globalStyles.div_main}>
             <NavigationBar />
-            <UserForm isSignup={false} />
+            <UserForm isSignup={false} isInternal={false} />
         </div>
     );
 }
