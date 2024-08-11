@@ -31,39 +31,40 @@ function UserForm({ isSignup, isInternal }) {
                 createUserWithEmailAndPassword(auth, email, password)
                 .then(async (userCredentials) => {
                     const user = userCredentials.user;
-                    await setDoc(doc(db, "users", user.uid), {
-                        email: user.email,
-                        displayName: user.displayName,
-                        isAdmin: false
-                    });
-                    localStorage.setItem('userID', user.uid);
                     if (isInternal) {
-                        localStorage.setItem("isInternal", true);
+                        await setDoc(doc(db, "users", user.uid), {
+                            email: user.email,
+                            displayName: user.displayName,
+                            isAdmin: true
+                        });
                     }
                     else {
-                        localStorage.setItem("isInternal", false);
+                        await setDoc(doc(db, "users", user.uid), {
+                            email: user.email,
+                            displayName: user.displayName,
+                            isAdmin: false
+                        });
                     }
+                    localStorage.setItem('userID', user.uid);
+                    localStorage.setItem("userEmail", user.email);
                     setAlert({ variant: 'success', message: 'Successfully signed up!' });
                 })
             }
             else {
                 const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-                const userDocRef = doc(db, "users", user.uid);
-                const userDoc = await getDoc(userDocRef);
-                if (userDoc.exists()) {
-                    const userData = userDoc.data();
-                    const isAdmin = userData.isAdmin;
-                    if (isAdmin) {
-                        
-                    }
-                    else {
-                    }
-                }
-                else {
-                    redirect("/login");
-                }
+                // user = userCredentials.user;
+                // const userDocRef = doc(db, "users", user.uid);
+                // const userDoc = await getDoc(userDocRef);
+                // if (userDoc.exists()) {
+                //     const userData = userDoc.data();
+                //     const isAdmin = userData.isAdmin;
+                // }
+                // else {
+                //     redirect("/login");
+                // }
                 const user = userCredentials.user;
                 localStorage.setItem('userID', user.uid);
+                localStorage.setItem("userEmail", user.email);
                 setAlert({ variant: 'success', message: 'Successfully logged in!' });
             }
         } catch(error) {

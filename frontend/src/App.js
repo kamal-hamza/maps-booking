@@ -8,6 +8,7 @@ import ApprovalsPage from './Pages/ApprovalsPage/ApprovalsPage';
 import BookingCalendar from './Components/Calender/Calender';
 import InternalLoginPage from './Pages/InternalLoginPage/InternalLoginPage';
 import InternalSignupPage from './Pages/InternalSignupPage/InternalSignupPage';
+import Logout from './Components/Logout/Logout';
 import logo from './assets/google-logo.webp';
 import './App.css';
 import RoomView from './Components/RoomView/RoomView';
@@ -44,7 +45,10 @@ function App() {
       element: <InternalSignupPage />
     },
     {
-      path: "/approvals/internal",
+      path: "/logout",
+      element: <Logout />
+    },     
+    { path: "/approvals/internal",
       element: <ApprovalsPage/>
     }
   ])

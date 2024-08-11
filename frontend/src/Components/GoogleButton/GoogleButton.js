@@ -23,6 +23,7 @@ function GoogleButton() {
                         isAdmin: false
                     });
                     localStorage.setItem('userID', user.uid);
+                    localStorage.setItem('userEmail', user.email);
                     console.log("User signed in:", user);
                 })
                 .catch((error) => {
