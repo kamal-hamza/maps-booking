@@ -44,4 +44,4 @@ class SignupSerializer(serializers.ModelSerializer):
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = ['id', 'name', 'price', 'capacity', 'isAvailableForBooking']
+        fields = ['id', 'name', 'price', 'capacity', 'is_available_for_booking']

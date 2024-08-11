@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.conf import settings
 
 # Create your models here.
 class customUserManager(BaseUserManager):
@@ -54,3 +55,12 @@ class Room(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Booking(models.Model):
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='bookings')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='bookings')
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.user.email

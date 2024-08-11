@@ -1,34 +1,42 @@
 import { useParams } from 'react-router-dom';
-import app from '../../firebaseConfig';
-import { getDoc, getFirestore, doc } from 'firebase/firestore';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 import styles from './BookRoomForm.module.css';
+import globalStyles from '../../globalStyles.module.css'; 
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function BookRoomForm() {
 
     const params = useParams();
     const [room, setRoom] = useState(null);
+    const [alert, setAlert] = useState(null);
+
     useEffect(() => {
         console.log("called")
         const fetchData = async () => {
-            const db = getFirestore(app);
-            const roomID = params.id
-            const docRef = doc(db, "rooms", roomID);
+            const roomId = params.id;
             try {
-                const doc = await getDoc(docRef);
-                console.log(doc);
-                if (doc.exists()) {
+                const url = `http://127.0.0.1:8000/create-list-room/${roomId}/`;
+                const token = localStorage.getItem('authToken');
+                const headers = {
+                    Authorization: `Token ${token}`
+                };
+                const response = await axios.get(url, { headers });
+                if (response.status === 200) {
+                    const data = response.data;
                     const roomData = {
-                        id: roomID,
-                        name: doc.data().name,
-                        occupancy: doc.data().occupancy,
-                        price: doc.data().price,
+                        id: data.id,
+                        name: data.name,
+                        price: data.price,
+                        capacity: data.capacity,
+                        is_available_for_booking: data.is_available_for_booking,
                     }
-                    setRoom(roomData);
+                    setRoom(roomData)
+                    console.log(data);
                 }
                 else {
-                    console.log("error");
+                    setAlert({ variant: 'danger', message: 'An error occured while fetching the room' });
                 }
             } catch (error) {
                 console.log(error);
@@ -39,6 +47,15 @@ function BookRoomForm() {
 
     return (
         <div>
+            {
+                alert
+                && 
+                (
+                    <Alert variant={alert.variant} className={globalStyles.alert} dismissible onClose={() => setAlert(null)}>
+                        {alert.message}
+                    </Alert>
+                )
+            }
             {
                 room ? (
                     <h1>{room.name}</h1>

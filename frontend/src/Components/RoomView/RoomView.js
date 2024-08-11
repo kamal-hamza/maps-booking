@@ -1,28 +1,30 @@
 import { useEffect, useState } from "react";
-import app from '../../firebaseConfig';
-import { collection, getFirestore, getDocs } from "firebase/firestore";
 import RoomCard from "../RoomCard/RoomCard";
+import axios from "axios";
 
 function RoomView() {
 
     const [rooms, setRooms] = useState([]);
+    const [alert, setAlert] = useState(null);
+
 
     useEffect(() => {
         const fetchData = async () => {
-            const db = getFirestore(app);
+            console.log("called");
             try {
-                const data = await getDocs(collection(db, "rooms"));
-                const roomArray = []
-                data.forEach((doc) => {
-                    const room = {
-                        id: doc.id,
-                        name: doc.data().name,
-                        occupancy: doc.data().capacity,
-                        price: doc.data().price,
-                    }
-                    roomArray.push(room)
-                });
-                setRooms(roomArray);
+                const url = 'http://127.0.0.1:8000/create-list-room/'
+                const token = localStorage.getItem('authToken');
+                const headers = {
+                    Authorization: `Token ${token}`
+                }
+                const response = await axios.get(url, { headers });
+                if (response.status === 200) {
+                    const data = response.data;
+                    setRooms(data)
+                } 
+                else {
+                    setAlert({ variant: 'danger', message: 'An error occured while fetching rooms' });
+                }
             } catch (error) {
                 console.log(error);
             }

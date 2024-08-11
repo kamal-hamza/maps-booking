@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from .models import Room
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from .serializers import LoginSerializer, SignupSerializer, RoomSerializer
 # Create your views here.
 
@@ -68,12 +68,23 @@ class login(APIView):
         else :
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-# List and Create View
 class RoomListCreateView(generics.ListCreateAPIView):
+
+    permission_classes = [IsAuthenticated]
+
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
 
-# Retrieve, Update, and Delete View
+class RoomRetriveView(generics.RetrieveAPIView):
+
+    permission_classes = [IsAuthenticated]
+
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+
 class RoomDetailView(generics.RetrieveUpdateDestroyAPIView):
+
+    permission_classes = [IsAuthenticated]
+
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
