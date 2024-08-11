@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import app from '../../firebaseConfig';
 import { collection, getFirestore, getDocs, doc, getDoc } from "firebase/firestore";
 import RoomCard from "../RoomCard/RoomCard";
+import styles from './RoomView.module.css';
 
 function RoomView() {
 
@@ -32,7 +33,7 @@ function RoomView() {
     }, []);
 
     return (
-        <div>
+        <div className={styles.room_div}>
             {
                 rooms.map((room) => (
                     <RoomCard key={room.id} id={room.id} name={room.name} occupancy={room.occupancy} price={room.price} />
