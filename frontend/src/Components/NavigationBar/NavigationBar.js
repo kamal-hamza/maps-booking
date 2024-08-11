@@ -17,6 +17,7 @@ function NavigationBar() {
                     <Nav className="me-auto">
                         <Nav.Link><Link className={styles.navlink} to="/login">Login</Link></Nav.Link>
                         <Nav.Link><Link className={styles.navlink} to="/signup">Sign Up</Link></Nav.Link>
+                        <Nav.Link><Link className={styles.navlink} to="/rooms">Rooms</Link></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
