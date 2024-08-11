@@ -18,7 +18,7 @@ function RoomView() {
                     const room = {
                         id: doc.id,
                         name: doc.data().name,
-                        occupancy: doc.data().occupancy,
+                        occupancy: doc.data().capacity,
                         price: doc.data().price,
                     }
                     roomArray.push(room)

@@ -6,8 +6,12 @@ import Image from 'react-bootstrap/Image';
 import styles from './NavigationBar.module.css'
 import { Link } from 'react-router-dom';
 import logo from '../../assets/maps-logo.png'
+import { getAuth } from 'firebase/auth';
+import app from '../../firebaseConfig';
 
 function NavigationBar() {
+
+    const email = localStorage.getItem('userEmail');
 
     return (
         <Navbar expand="lg" id={styles.navbar} className="bg-body-tertiary">
@@ -18,7 +22,8 @@ function NavigationBar() {
                     <Nav className="me-auto">
                         <Nav.Link><Link className={styles.navlink} to="/login">Login</Link></Nav.Link>
                         <Nav.Link><Link className={styles.navlink} to="/signup">Sign Up</Link></Nav.Link>
-                        <Nav.Link><Link className={styles.navlink}>Logout</Link></Nav.Link>
+                        <Nav.Link><Link className={styles.navlink} to="/logout">Logout</Link></Nav.Link>
+                        <Nav.Link><Link className={styles.navlink}>{email}</Link></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
